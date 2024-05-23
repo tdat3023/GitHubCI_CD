@@ -1,0 +1,71 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main", "master" ] # Kích hoạt workflow khi có push lên nhánh main hoặc master
+  pull_request:
+    branches: [ "main", "master" ] # Kích hoạt workflow khi có pull request vào nhánh main hoặc master
+
+jobs:
+  build-node14:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Sử dụng Node.js 14.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+        cache: 'npm'
+
+    - name: Cài đặt các dependencies
+      run: npm ci
+
+    - name: Liệt kê các gói và phiên bản
+      run: npm list
+
+    - name: Chạy các kiểm thử
+      run: npm test
+
+  build-node16:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Sử dụng Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: 'npm'
+
+    - name: Cài đặt các dependencies
+      run: npm ci
+
+    - name: Liệt kê các gói và phiên bản
+      run: npm list
+
+    - name: Chạy các kiểm thử
+      run: npm test
+
+  build-node18:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Sử dụng Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+
+    - name: Cài đặt các dependencies
+      run: npm ci
+
+    - name: Liệt kê các gói và phiên bản
+      run: npm list
+
+    - name: Chạy các kiểm thử
+      run: npm test
