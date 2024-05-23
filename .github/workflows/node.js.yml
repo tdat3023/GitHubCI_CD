@@ -23,7 +23,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: node -v # Kiểm tra phiên bản Node.js đang sử dụng
+
+    - name: Kiểm tra file package-lock.json
+      run: ls package-lock.json
+
     - run: npm ci
-    - run: npm list # In ra danh sách các gói và phiên bản đang được sử dụng
+
     - run: npm test
