@@ -17,20 +17,26 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Kiểm tra sự tồn tại của package-lock.json
+    - name: Check for package-lock.json
+      id: check-package-lock
       run: |
         if [ -f package-lock.json ]; then
           echo "package-lock.json exists.";
+          echo "::set-output name=package-lock-exists::true";
         else
-          echo "package-lock.json does not exist. Generating one.";
-          npm install --package-lock-only;
+          echo "package-lock.json does not exist.";
+          echo "::set-output name=package-lock-exists::false";
         fi
 
-    - name: Install dependencies if npm ci fails
-      run: npm ci || npm install
+    - name: Install dependencies if package-lock.json exists
+      if: steps.check-package-lock.outputs.package-lock-exists == 'true'
+      run: npm ci
+
+    - name: Generate package-lock.json and install dependencies if not exists
+      if: steps.check-package-lock.outputs.package-lock-exists == 'false'
+      run: |
+        npm install
+        npm ci
 
     - name: List installed packages
       run: npm list
