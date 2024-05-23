@@ -19,8 +19,17 @@ jobs:
         node-version: 14.x
         cache: 'npm'
 
+    - name: Kiểm tra sự tồn tại của package-lock.json
+      run: |
+        if [ -f package-lock.json ]; then
+          echo "package-lock.json exists.";
+        else
+          echo "package-lock.json does not exist. Generating one.";
+          npm install --package-lock-only;
+        fi
+
     - name: Cài đặt các dependencies
-      run: npm ci
+      run: npm ci || npm install
 
     - name: Liệt kê các gói và phiên bản
       run: npm list
@@ -40,8 +49,17 @@ jobs:
         node-version: 16.x
         cache: 'npm'
 
+    - name: Kiểm tra sự tồn tại của package-lock.json
+      run: |
+        if [ -f package-lock.json ]; then
+          echo "package-lock.json exists.";
+        else
+          echo "package-lock.json does not exist. Generating one.";
+          npm install --package-lock-only;
+        fi
+
     - name: Cài đặt các dependencies
-      run: npm ci
+      run: npm ci || npm install
 
     - name: Liệt kê các gói và phiên bản
       run: npm list
@@ -61,8 +79,17 @@ jobs:
         node-version: 18.x
         cache: 'npm'
 
+    - name: Kiểm tra sự tồn tại của package-lock.json
+      run: |
+        if [ -f package-lock.json ]; then
+          echo "package-lock.json exists.";
+        else
+          echo "package-lock.json does not exist. Generating one.";
+          npm install --package-lock-only;
+        fi
+
     - name: Cài đặt các dependencies
-      run: npm ci
+      run: npm ci || npm install
 
     - name: Liệt kê các gói và phiên bản
       run: npm list
