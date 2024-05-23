@@ -83,8 +83,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Checkout main branch
-        run: git checkout main
+      - name: Checkout master branch
+        run: git checkout master
 
       - name: Merge master into main
         run: git merge master --no-ff --commit
