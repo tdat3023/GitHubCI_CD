@@ -1,0 +1,23 @@
+name: Merge to main
+
+on:
+  push:
+    branches:
+      - yw07761-patch-1
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Merge branch into main
+        run: |
+          git merge --no-ff ${{ github.event.ref }}
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
