@@ -12,6 +12,7 @@ export default function ModalScreen() {
       <EditScreenInfo path="app/modal.tsx" />
       {/* <Text style={styles.title}>Bỏ cờ all watch</Text> */}
       <Text style={styles.title}>Test auto merge master to main</Text>
+      <Text style={styles.title}>Test auto merge master to main</Text>
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
